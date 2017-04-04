@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="uname" placeholder="用户名" />
+        <input type="text" id="upwd" placeholder="密码" />
+        <input type="button" id="loginBtn" value="登录" />
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        (function(){
+            var login = {
+                //初始化
+                init : function(){
+                  document.getElementById('loginBtn').onclick = this.toLogin;
+                },
+                //开始登录
+                toLogin : function(){
+                    var unameVal = document.getElementById('uname').value;
+                    var upwdVal = document.getElementById('upwd').value;
+                    if(unameVal=='' || unameVal==null){
+                        alert('用户名不能为空！');
+                        return;
+                    }
+                    if(upwdVal=='' || upwdVal==null){
+                        alert('密码不能为空');
+                        return;
+                    }
+                    $.ajax({
+                        url : '/login/loginForm',
+                        type : 'post',
+                        dataType : 'json',
+                        data : {
+                            uname : unameVal,
+                            upwd : upwdVal
+                        },
+                        success : function(data){
+                            console.log(data);
+                        }
+                    });
+                }
+            }
+            window.login = login;
+            login.init();
+        })();
+    </script>
+</body>
+</html>

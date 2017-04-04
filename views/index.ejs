@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style type="text/css">
+        thead tr{font-weight:bold;}
+        td{height:30px;line-height:30px;padding:0 10px;border:1px solid #ccc;}
+    </style>
+</head>
+<body>
+    <h1>this is index.ejs</h1>
+    <div class="header"><% include header.ejs %></div>
+    <div class="footer"><% include footer.ejs %></div>
+    <a href="/login">登录</a>
+    <a href="/regist">注册</a>
+    <% if(locals.uname){ %>
+    <h1>用户：<%= locals.uname %></h1>
+    <% } %>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>用户名</td>
+                <td>密码</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<data.length; i++){ %>
+            <tr>
+                <td><%= data[i].id %></td>
+                <td><%= data[i].uname %></td>
+                <td><%= data[i].upwd  %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

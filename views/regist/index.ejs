@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="uname" placeholder="用户名" />
+        <input type="text" id="upwd" placeholder="密码" />
+        <input type="submit" value="注册" id="sub" />
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        (function(){
+            var regist = {
+                //初始化执行
+                init : function(){
+                    document.getElementById('sub').onclick = this.sub;
+                },
+                //提交注册信息
+                sub : function(){
+                    var unameVal = document.getElementById('uname').value;
+                    var upwdVal = document.getElementById('upwd').value;
+                    if(uname=='' || uname==null){
+                        alert('请填写用户名！');
+                        return;
+                    }
+                    if(upwd=='' || upwd==null){
+                        alert('请填写密码');
+                        return;
+                    }
+                    $.ajax({
+                        url : '/regist/registForm',
+                        type : 'post',
+                        dataType : 'json',
+                        data : {
+                            uname : unameVal,
+                            upwd : upwdVal
+                        },
+                        success : function(message){
+                            switch(message.result){
+                                case '0':
+                                    alert('用户名已存在');
+                                    break;
+                                case '1':
+                                    alert('注册成功');
+                                    break;
+                            }
+                        }
+                    });
+                }
+            }
+            window.regist = regist;
+            regist.init();
+        })();
+    </script>
+</body>
+</html>
