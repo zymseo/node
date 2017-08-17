@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+</head>
+<body>
+    <input type="text" id="url" />
+    <button id="getCode">生成二维码</button>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    (function(){
+        var code = {
+            getCodeBtn : document.getElementById('getCode'),
+
+            //初始化执行
+            init : function(){
+                this.getCode();
+            },
+
+            //提交网址
+            getCode : function(){
+                this.getCodeBtn.onclick = function(){
+                    var url = document.getElementById('url');
+                    if( url == null || url.value =='' ){
+                        alert('请先输入网址！');
+                        return false;
+                    }
+                    $.ajax({
+                        url : '/code/mkCode',
+                        type : 'post',
+                        data : {
+                            url : url.value
+,                        },
+                        dataType : 'json',
+                        success : function(result){
+                            console.log(result);
+                        }
+                    });
+                }
+            }
+        };
+
+        code.init();
+    })();
+</script>

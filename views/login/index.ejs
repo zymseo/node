@@ -39,7 +39,11 @@
                             upwd : upwdVal
                         },
                         success : function(data){
-                            console.log(data);
+                            switch(data.data){
+                                case '1':
+                                    alert('登录成功！');
+                                    break;
+                            }
                         }
                     });
                 }

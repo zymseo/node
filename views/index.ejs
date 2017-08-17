@@ -15,6 +15,8 @@
     <div class="footer"><% include footer.ejs %></div>
     <a href="/login">登录</a>
     <a href="/regist">注册</a>
+    <a href="/upload">上传文件</a>
+    <a href="/code">网址转二维码</a>
     <% if(locals.uname){ %>
     <h1>用户：<%= locals.uname %></h1>
     <% } %>
@@ -27,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            <% for(var i=0; i<data.length; i++){ %>
+            <% for(var i=0; i<dataLen; i++){ %>
             <tr>
                 <td><%= data[i].id %></td>
                 <td><%= data[i].uname %></td>
@@ -36,5 +38,6 @@
             <% } %>
         </tbody>
     </table>
+    <%= locals.username %>
 </body>
 </html>

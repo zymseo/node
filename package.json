@@ -11,10 +11,18 @@
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.2",
-    "ejs" : "latest",
-    "mysql" : "latest",
-    "cheerio" : "latest",
-    "body-parser" : "latest",
-    "cookie-parser" : "latest"
+    "ejs": "latest",
+    "mysql": "latest",
+    "cheerio": "latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "express-session": "latest",
+    "multer": "latest",
+    "ueditor": "latest"
+  },
+  "devDependencies": {
+    "async": "^2.4.1",
+    "images": "^3.0.0",
+    "qr-image": "^3.2.0"
   }
 }

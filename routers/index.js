@@ -9,10 +9,11 @@ var http = require('http'),
 
 //index
 router.get('/', function(request, response){
+
     db('select * from blog_user', function(error, data){
         /*response.locals.data = data;
         response.render('index.ejs');*/
-        response.render('index.ejs', {data : data});
+        response.render('index.ejs', {data : data, dataLen : data.length});
     });//查询blog_user表中的所有数据
 });
 
@@ -21,6 +22,12 @@ router.use('/regist', require('./regist').registRouter);
 
 //login
 router.use('/login', require('./login').loginRouter);
+
+//upload
+router.use('/upload', require('./upload').uploadRouter);
+
+//code
+router.use('/code', require('./code').codeRouter);
 
 
 exports.router = router;

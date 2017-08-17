@@ -4,7 +4,8 @@
 
 var express = require('express'),
     router = express.Router(),
-    db = require('../module/db').mysql;
+    db = require('../module/db').mysql,
+    crypto = require('crypto');
 
 router.get('/', function(request, response){
     response.render('regist/');
@@ -17,7 +18,9 @@ router.post('/registForm', function(request, response){
                 result : '0'
             });
         }else{
-            db('insert into blog_user set uname="'+request.body.uname+'", upwd="'+request.body.upwd+'"', function(error, data){
+            var md5 = crypto.createHash('md5');//使用md5加密
+            var upwd = md5.update(request.body.upwd).digest('hex');//加密之后的密码
+            db('insert into blog_user set uname="'+request.body.uname+'", upwd="'+upwd+'"', function(error, data){
                 response.json({
                     result : '1'
                 });
